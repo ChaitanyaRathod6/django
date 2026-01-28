@@ -19,3 +19,24 @@ def shows(request):
 
 def news(request):
     return render(request,"news.html")
+
+def recipe(request):
+    ingredients = ["noodles","sauce","cheese","vegetables"]
+    data = {
+        'name':'maggie',
+        "time": 20,
+        'ingredients': ingredients
+    }
+    return render(request,"recipe.html", data)  
+
+
+def team(request):
+    players = ["rohit sharma","suryakumar yadav","hardik pandya","jason holder","kieron pollard"]
+    ipl = {
+        "teamname" : "mumbai indians",
+        "captain" : "rohit sharma",
+        "players" : players,
+        "trophies" : 5
+    }
+    
+    return render(request, "team.html", ipl)
