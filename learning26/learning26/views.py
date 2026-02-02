@@ -38,5 +38,4 @@ def team(request):
         "players" : players,
         "trophies" : 5
     }
-    
     return render(request, "team.html", ipl)
