@@ -1,0 +1,20 @@
+create aboutus contactus , home pages
+task:
+create a contactus with basic css design... <style></style>
+
+create movies, shows, news:
+
+
+create teams: team.html
+teamName : 
+cap:
+playerList
+trophy:
+
+if < 5  message
+---------------------------
+own:
+
+
+task:
+student app --> 3 function : student releted data dsipaly...
