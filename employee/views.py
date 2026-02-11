@@ -1,5 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render,HttpResponse
 from .models import Employees
+from .form import EmployeeForm,CourseForm,PropertyForm,loginForm,MoivesForm
+ 
 # Create your views here.
 def employeeslist(request):
     employees = Employees.objects.all().values()
@@ -71,4 +73,66 @@ def employeeFliter(request):
     print("query 19", employee19)
     print("query 20", employee20)
 
-    return render(request,'employee/employeeFliter.html')    
+    return render(request,'employee/employeeFliter.html')   
+
+
+
+def createEmployee(request):
+    Employees.objects.create(name="ajay",age=23,salary=23000,post="HR",join_date="2022-01-01")
+    return HttpResponse(" created Employee ")
+
+
+def createEmployeewithForms(request):
+    print(request.method)
+    if request.method == "POST":
+        form = EmployeeForm(request.POST)
+        form.save()
+        return HttpResponse(" employee created")
+    else:    
+        form = EmployeeForm()
+        return render(request,"employee/createemployee.html",{"form":form})
+    
+
+def CourseFormWithForm(request):
+    print(request.method)
+    if request.method == "POST":
+        form = CourseForm(request.POST)
+        form.save()
+        return HttpResponse("Course entered")
+    else:
+        form = CourseForm()
+        return render(request,"employee/CourseFormWithForm.html",{"form":form})   
+
+
+def Property_Form(request):
+    print(request.method)
+    if request.method == "POST":
+        form = PropertyForm(request.POST)
+        form.save()
+        return HttpResponse("porperty entered")
+    else:
+        form = PropertyForm()
+        return render(request,"employee/PropertyForm.html",{"form":form})  
+
+
+def login(request):
+    print(request.method)
+    if request.method == "POST":
+        form = loginForm(request.POST)
+        form.save()
+        return HttpResponse("login successfullay")
+    
+    else:
+        form =loginForm()
+        return render(request,"employee/loginForm.html",{"form":form}) 
+
+
+def Moives_Form(request):
+    print(request.method)
+    if request.method == "POST":
+        form = MoivesForm(request.POST)
+        form.save()
+        return HttpResponse("moives entered")
+    else:
+        form =  MoivesForm()
+        return render(request,"employee/MoivesForm.html",{"form":form})
