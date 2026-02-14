@@ -1,10 +1,9 @@
-<h1>   EMPLOYEE LIST </h1>
-<h1>  {{employee}} : {{employees}}   </h1>
-
-
-
-
-<table border="1">
+<h1>EMPLOYEE LIST</h1>
+<a href ="{% url 'createEmployeewithForms'%}">CREATE EMPLOYEE</a>
+<a href ="{% url 'FilterEmployee'%}">FILTER</a>
+<a href="{% url 'SortEmployee' 1 %}">ASC</a>
+<a href="{% url 'SortEmployee' 2 %}">DSC</a>
+<table>
     <thead>
         <tr>
             <th>ID</th>
@@ -13,22 +12,23 @@
             <th>Salary</th>
             <th>Join Date</th>
             <th>Post</th>
+            <th>Actions</th>
+            
         </tr>
     </thead>
-
     <tbody>
-        {% for emp in employees %}
+        {% for emp in employees  %}
         <tr>
-            <td>{{ emp.id }}</td>
-            <td>{{ emp.name }}</td>
-            <td>{{ emp.age }}</td>
-            <td>{{ emp.salary }}</td>
-            <td>{{ emp.join_date }}</td>
-            <td>{{ emp.post }}</td>
-        </tr>
-        {% empty %}
-        <tr>
-            <td colspan="6">No employees found</td>
+            <td>{{emp.id}}</td>
+            <td>{{emp.name}}</td>
+            <td>{{emp.age}}</td>
+            <td>{{emp.salary}}</td>
+            <td>{{emp.join_date}}</td>
+            <td>{{emp.post}}</td>
+            <td><a href="{% url 'DeleteEmployee' emp.id %}">DELETE</a></td>
+            <td><a href="{% url 'UpdateEmployee' emp.id %}">UPDATE</a></td>
+            
+           
         </tr>
         {% endfor %}
     </tbody>

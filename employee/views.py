@@ -1,4 +1,4 @@
-from django.shortcuts import render,HttpResponse
+from django.shortcuts import render,HttpResponse,redirect
 from .models import Employees
 from .form import EmployeeForm,CourseForm,PropertyForm,loginForm,MoivesForm
  
@@ -6,7 +6,7 @@ from .form import EmployeeForm,CourseForm,PropertyForm,loginForm,MoivesForm
 def employeeslist(request):
     employees = Employees.objects.all().values()
     print(employees)
-    return render(request,"employee/employeelist.html",{"employee":employees})
+    return render(request,"employee/employeelist.html",{"employees":employees})
 
 
 def employeeFliter(request):
@@ -74,7 +74,7 @@ def employeeFliter(request):
     print("query 20", employee20)
 
     return render(request,'employee/employeeFliter.html')   
-
+   
 
 
 def createEmployee(request):
@@ -87,10 +87,11 @@ def createEmployeewithForms(request):
     if request.method == "POST":
         form = EmployeeForm(request.POST)
         form.save()
-        return HttpResponse(" employee created")
+        # return HttpResponse(" employee created")
+        return redirect("employeelist")
     else:    
         form = EmployeeForm()
-        return render(request,"employee/createemployee.html",{"form":form})
+        return render(request,"employee/createemployeewithForm.html",{"form":form})
     
 
 def CourseFormWithForm(request):
@@ -136,3 +137,45 @@ def Moives_Form(request):
     else:
         form =  MoivesForm()
         return render(request,"employee/MoivesForm.html",{"form":form})
+    
+
+def DeleteEmployee(request,id):
+    # delete from employee where id = 1
+    print("id for url = ",id )
+    Employees.objects.filter(id=id).delete()
+    # return HttpResponse("DELETE EMPLOYEE")
+    # to redirect to employeelist form DeleteEmployee
+    return redirect("employeelist")
+
+
+def FilterEmployee(request):
+    print("filtered employee called")
+    employees = Employees.objects.filter(age__gt = 25).values()
+    return render(request,"employee/filteremployee.html",{"employees":employees})
+
+# Sorting Employee
+
+def SortEmployee(request,id):
+    if id == 1:
+        employees = Employees.objects.order_by("id")
+    elif id == 2:    
+        employees = Employees.objects.order_by("-id")
+    else:
+        employees = Employees.objects.all()    
+
+    return render(request,"employee/employeelist.html",{"employees":employees})
+
+
+# Upadte Employee Information
+
+def UpdateEmployee(request,id):
+     #database existing user... id -->
+    employee = Employees.objects.get(id=id) #select * from employee where id = 1
+    
+    if request.method == "POST":
+        form = EmployeeForm(request.POST,instance=employee)
+        form.save()
+        return redirect("employeelist")
+    else:
+        form = EmployeeForm(instance=employee)    
+        return render(request,"employee/updateemployee.html",{"form":form})
