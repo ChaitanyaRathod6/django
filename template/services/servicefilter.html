@@ -1,0 +1,35 @@
+
+<h1>FILTERED SERVICE TABLE</h1>
+
+<a href="{% url 'ServicesTable' %}">BACK TO ALL SERVICES</a>
+
+<table border="1" cellpadding="10" cellspacing="0">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>SERVICES_NAME</th>
+            <th>DESCRIPTION</th>
+            <th>PRICE</th>
+            <th>DURATION</th>
+            <th>IS_ACTIVE</th>
+            <th>CREATED_AT</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for ser in services %}
+        <tr>
+            <td>{{ ser.id }}</td>
+            <td>{{ ser.ServicesName }}</td>
+            <td>{{ ser.Description }}</td>
+            <td>{{ ser.Price }}</td>
+            <td>{{ ser.Duration }}</td>
+            <td>{{ ser.Is_Activate }}</td>
+            <td>{{ ser.Created_At }}</td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="7">No services found above 2500</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>

@@ -1,14 +1,20 @@
 <h1>SERVICE TABLE</h1>
-
+<a href="{% url 'Service' %}">CREATE SERVICE</a>
+<a href="{% url 'ServiceFilter' %}">FILTER</a>
+<a href="{% url 'SortServices' 1 %}">ASC</a>
+<a href="{% url 'SortServices' 2 %}">DSC</a>
 <table border="1" cellpadding="10" cellspacing="0">
     <thead>
         <tr>
+            <th>ID</th>
             <th>SERVICES_NAME</th>
             <th>DESCRIPTION</th>
             <th>PRICE</th>
             <th>DURATION</th>
             <th>IS_ACTIVE</th>
             <th>CREATED_AT</th>
+            <th>ACTIONS</th>
+            <th>ACTIONS</th>
            
             
         </tr>
@@ -16,16 +22,15 @@
     <tbody>
         {% for ser in services  %}
         <tr>
+            <td>{{ser.id}}</td>
             <td>{{ser.ServicesName}}</td>
-            
             <td>{{ser.Description}}</td>
             <td>{{ser.Price}}</td>
             <td>{{ser.Duration}}</td>
             <td>{{ser.Is_Activate}}</td>
             <td>{{ser.Created_At}}</td>
-            
-            
-           
+            <td><a href="{% url 'ServiceDelete' ser.id %}">DELETE</a></td>
+            <td><a href="{% url 'ServiceUpdate' ser.id %}">UPDATE</a></td>
         </tr>
         {% endfor %}
     </tbody>
