@@ -1,7 +1,10 @@
-<h1>SERIVES</h1>
+{% extends "base1.html" %}
+{% block content %}
+<h1>SERVICES</h1>
 
 <form method = "POST">
     {% csrf_token %}
     {{form}}
-    <input type = "submit" values = "submit">
+    <input type = "submit" value = "submit">
 </form>
+{% endblock content %}

@@ -1,0 +1,162 @@
+/* Google Font Import */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ================= NAVBAR ================= */
+
+.navbar {
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(10px);
+    padding: 15px 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+.logo a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 24px;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 30px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 500;
+    position: relative;
+    transition: 0.3s ease;
+}
+
+/* Hover underline animation */
+.nav-links a::after {
+    content: "";
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    background: #00f5ff;
+    left: 0;
+    bottom: -5px;
+    transition: 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: #00f5ff;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+/* ================= CONTENT ================= */
+
+.content {
+    width: 90%;
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 30px;
+    background: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    animation: fadeIn 0.6s ease-in-out;
+}
+
+/* Table Styling */
+.content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.content table th {
+    background: #667eea;
+    color: white;
+    padding: 12px;
+    text-align: left;
+}
+
+.content table td {
+    padding: 12px;
+    border-bottom: 1px solid #eee;
+}
+
+.content table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.content table tr:hover {
+    background-color: #f1f5ff;
+    transition: 0.3s ease;
+}
+
+/* ================= FOOTER ================= */
+
+.footer {
+    margin-top: auto;
+    background: rgba(0, 0, 0, 0.85);
+    color: #fff;
+    padding: 15px;
+    text-align: center;
+    font-size: 14px;
+}
+
+/* ================= ANIMATION ================= */
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .content {
+        width: 95%;
+        padding: 20px;
+    }
+
+    .content table th,
+    .content table td {
+        font-size: 14px;
+    }
+}
