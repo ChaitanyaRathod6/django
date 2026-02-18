@@ -1,0 +1,20 @@
+
+{% extends 'base.html' %}
+{% block content %}
+<div class="services-grid">
+
+{% for service in services  %}
+    <div class="service-card">
+    <div class="card-image">
+      <img src="https://via.placeholder.com/300x200/0000FF/FFFFFF" alt="Service Image">
+    </div>
+    <div class="card-content">
+      <span class="service-category">{{service.categoryId.categoryName}}</span>
+      <h3 class="service-title">{{service.serviceName}}</h3>
+    </div>
+  </div>
+{% endfor %}
+
+    
+  </div>
+  {% endblock content %}

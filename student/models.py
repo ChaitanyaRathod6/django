@@ -94,7 +94,7 @@ class Category(models.Model):
         return self.Name    
 
 
-class services(models.Model):
+class Service(models.Model):
     name = models.CharField(max_length=100)
     description = models.CharField(max_length=200)
     price = models.IntegerField()
@@ -102,9 +102,9 @@ class services(models.Model):
     Categoryid = models.ForeignKey(Category, on_delete=models.CASCADE)
 
     class Meta:
-        db_table = "services"
-        verbose_name = "Service"
-        verbose_name_plural = "Services" 
+        db_table = "Service"
+        # verbose_name = "Service"
+        # verbose_name_plural = "Services" 
     
     def __str__(self):
         return self.name
