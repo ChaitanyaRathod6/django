@@ -1,7 +1,12 @@
 {% extends 'base.html' %}
 {% load crispy_forms_tags %}
 {% block content %}
-<form method = "POST">
+{% if form.errors %}
+    <div style="color:red;">
+        {{ form.errors }}
+    </div>
+{% endif %}
+<form method = "POST" novalidate>
     {% csrf_token %}
     {{form|crispy}}
      {% comment %} {{form.serviceName | as_crispy_field}}

@@ -1,20 +1,28 @@
-
 {% extends 'base.html' %}
 {% block content %}
 <div class="services-grid">
 
-{% for service in services  %}
-    <div class="service-card">
+{% for service in services %}
+  <div class="service-card">
+    
     <div class="card-image">
-      <img src="https://via.placeholder.com/300x200/0000FF/FFFFFF" alt="Service Image">
+      <img src="https://via.placeholder.com/300" alt="Service Image">
     </div>
+
     <div class="card-content">
-      <span class="service-category">{{service.categoryId.categoryName}}</span>
-      <h3 class="service-title">{{service.serviceName}}</h3>
+      <span class="service-category">{{ service.categoryId.categoryName }}</span>
+      <h3 class="service-title">{{ service.name }}</h3>
+
+      <!-- ✅ DELETE BUTTON HERE -->
+      <a href="{% url 'delete_service' service.id %}" 
+         style="color:white; background:red; padding:5px 10px; text-decoration:none;">
+         Delete
+      </a>
+
     </div>
+
   </div>
 {% endfor %}
 
-    
-  </div>
-  {% endblock content %}
+</div>
+{% endblock content %}
